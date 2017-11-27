@@ -41,34 +41,58 @@ public class MainActivity extends ActionBarActivity {
      */
     public void increment(View view) {
         quantity = quantity + 1;
-        display(quantity);
+        displayQuantity(quantity);
     }
+
+
 
     /**
      * This method is called when the minus button is clicked.
      */
     public void decrement(View view) {
         quantity = quantity - 1;
-        display(quantity);
+        displayQuantity(quantity);
     }
 
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = quantity * 5;
-        String priceMessage = "Total: $" + price;
-        priceMessage = priceMessage + "\nThank you!";
-        displayMessage(priceMessage);
+        int price = calculatePrice();
+        String total =  "\nTotal: $" + price;
+
+        displayMessage(total + createOrderSummary());
     }
+
+    /**
+     * Calculates the price of the order.
+     *
+
+     */
+    private int calculatePrice() {
+        return quantity * 5;
+    }
+
+    /**
+     * returns the name of the person who is buying .
+     *
+
+     */
+    private String createOrderSummary (){
+        String priceMessage = "\nName: Kaptain Kunal";
+        priceMessage +=  "\nQuantity: " + quantity;
+        priceMessage +=  "\nThank you!";
+        return priceMessage;
+    }
+
 
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void display(int number) {
+    private void displayQuantity(int numberOfCoffee) {
         TextView quantityTextView = (TextView) findViewById(
                 R.id.quantity_text_view);
-        quantityTextView.setText("" + number);
+        quantityTextView.setText("" + numberOfCoffee);
     }
 
     /**
